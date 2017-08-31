@@ -19,7 +19,7 @@
                 @foreach($users as $user)
                     <tr>
                         <td>{{$user->id}}</td>
-                        <td>{{$user->name}}</td>
+                        <td><a href="{{route('main.users.edit', $user->id)}}">{{$user->name}}</a></td>
                         <td>{{$user->lat}}</td>
                         <td>{{$user->lng}}</td>
                         <td>{{$user->created_at->diffForhumans()}}</td>

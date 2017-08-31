@@ -30,6 +30,7 @@ class UsersController extends Controller
     public function create()
     {
         //
+        return view('users.create');
     }
 
     /**
@@ -41,6 +42,8 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         //
+        User::create($request->all());
+        return redirect('/main/users');
     }
 
     /**
@@ -63,6 +66,8 @@ class UsersController extends Controller
     public function edit($id)
     {
         //
+        $user = User::findOrFail($id);
+        return view('users.edit', compact('user'));
     }
 
     /**
@@ -75,6 +80,8 @@ class UsersController extends Controller
     public function update(Request $request, $id)
     {
         //
+        User::findOrFail($id)->update($request->all());
+        return redirect('/main/users');
     }
 
     /**
@@ -86,5 +93,7 @@ class UsersController extends Controller
     public function destroy($id)
     {
         //
+        User::findOrFail($id)->delete();
+        return redirect('/main/users');
     }
 }

@@ -20,3 +20,4 @@ Route::get('/', function () {
 // });
 
 Route::resource('main/users', 'UsersController');
+Route::get('main/users/api/getdata', 'UsersController@userDataApi');

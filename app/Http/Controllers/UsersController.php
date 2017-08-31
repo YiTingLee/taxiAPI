@@ -96,4 +96,8 @@ class UsersController extends Controller
         User::findOrFail($id)->delete();
         return redirect('/main/users');
     }
+
+    public function userDataApi(){
+        return User::all();
+    }
 }

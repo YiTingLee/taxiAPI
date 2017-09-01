@@ -22,3 +22,4 @@ Route::get('/', function () {
 Route::resource('main/users', 'UsersController');
 Route::resource('main/taxis', 'TaxisController');
 Route::get('main/users/api/getdata', 'UsersController@userDataApi');
+Route::get('main/taxis/api/getdata', 'TaxisController@taxiDataApi');

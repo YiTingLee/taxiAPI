@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Taxi;
 
 class TaxisController extends Controller
 {
@@ -16,6 +17,8 @@ class TaxisController extends Controller
     public function index()
     {
         //
+        $taxis = Taxi::all();
+        return view('taxis.index', compact('taxis'));
     }
 
     /**
@@ -26,6 +29,7 @@ class TaxisController extends Controller
     public function create()
     {
         //
+        return view('taxis.create');
     }
 
     /**
@@ -37,6 +41,8 @@ class TaxisController extends Controller
     public function store(Request $request)
     {
         //
+        Taxi::create($request->all());
+        return redirect('/main/taxis');
     }
 
     /**
@@ -59,6 +65,8 @@ class TaxisController extends Controller
     public function edit($id)
     {
         //
+        $taxi = Taxi::findOrFail($id);
+        return view('taxis.edit', compact('taxi'));
     }
 
     /**
@@ -71,6 +79,8 @@ class TaxisController extends Controller
     public function update(Request $request, $id)
     {
         //
+        Taxi::findOrFail($id)->update($request->all());
+        return redirect('/main/taxis');
     }
 
     /**
@@ -82,5 +92,11 @@ class TaxisController extends Controller
     public function destroy($id)
     {
         //
+        Taxi::findOrFail($id)->delete();
+        return redirect('/main/taxis');
+    }
+
+    public function taxiDataApi(){
+        return response()->json(Taxi::all());
     }
 }

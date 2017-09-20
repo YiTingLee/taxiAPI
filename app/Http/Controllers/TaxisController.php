@@ -97,6 +97,8 @@ class TaxisController extends Controller
     }
 
     public function taxiDataApi(){
-        return response()->json(Taxi::all());
+        return response()->json(Taxi::all())->header('Access-Control-Allow-Origin' , '*')
+        ->header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT, DELETE')
+        ->header('Access-Control-Allow-Headers', 'Content-Type, Accept, Authorization, X-Requested-With');
     }
 }
